@@ -1,0 +1,28 @@
+# 行尾统一策略
+#
+# 背景：Windows 上 Git 默认 core.autocrlf=true，检出时会把所有文本文件改写为 CRLF。
+# 这会让不带扩展名的 gradlew（shell 脚本）在 Git Bash / Linux 下执行失败。
+# 这里显式声明：仓库内一律以 LF 存储，检出时也保持 LF，不受使用者的 autocrlf 设置影响。
+
+* text=auto eol=lf
+
+# Windows 批处理必须保持 CRLF，否则 cmd 解析异常
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# 二进制文件：不做行尾转换，也不做文本 diff
+*.jar       binary
+*.apk       binary
+*.aab       binary
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.gif       binary
+*.webp      binary
+*.ico       binary
+*.ttf       binary
+*.otf       binary
+*.woff      binary
+*.woff2     binary
+*.jks       binary
+*.keystore  binary
